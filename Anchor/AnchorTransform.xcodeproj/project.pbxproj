@@ -15,11 +15,11 @@
 		660E40DF1BBA652C004D2879 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 660E40DD1BBA652C004D2879 /* LaunchScreen.storyboard */; };
 		660E40EA1BBA652C004D2879 /* AnchorTransformTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 660E40E91BBA652C004D2879 /* AnchorTransformTests.m */; };
 		660E40F51BBA652C004D2879 /* AnchorTransformUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 660E40F41BBA652C004D2879 /* AnchorTransformUITests.m */; };
-		660E41041BBA6600004D2879 /* LeadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 660E41031BBA6600004D2879 /* LeadViewController.m */; settings = {ASSET_TAGS = (); }; };
 		660E41071BBA7598004D2879 /* NaviPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 660E41061BBA7598004D2879 /* NaviPageVC.m */; settings = {ASSET_TAGS = (); }; };
 		660E410A1BBA75CA004D2879 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 660E41091BBA75CA004D2879 /* UIView+Extension.m */; settings = {ASSET_TAGS = (); }; };
 		660E410F1BBA8689004D2879 /* LeadVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 660E410E1BBA8689004D2879 /* LeadVC.m */; settings = {ASSET_TAGS = (); }; };
 		660E41121BBAAAAA004D2879 /* LeadVCTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 660E41111BBAAAAA004D2879 /* LeadVCTest.m */; settings = {ASSET_TAGS = (); }; };
+		660E41151BBB8029004D2879 /* LeadUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 660E41141BBB8029004D2879 /* LeadUIViewController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,8 +56,6 @@
 		660E40F01BBA652C004D2879 /* AnchorTransformUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AnchorTransformUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		660E40F41BBA652C004D2879 /* AnchorTransformUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnchorTransformUITests.m; sourceTree = "<group>"; };
 		660E40F61BBA652C004D2879 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		660E41021BBA6600004D2879 /* LeadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeadViewController.h; sourceTree = "<group>"; };
-		660E41031BBA6600004D2879 /* LeadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeadViewController.m; sourceTree = "<group>"; };
 		660E41051BBA7598004D2879 /* NaviPageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NaviPageVC.h; sourceTree = "<group>"; };
 		660E41061BBA7598004D2879 /* NaviPageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NaviPageVC.m; sourceTree = "<group>"; };
 		660E41081BBA75CA004D2879 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
@@ -65,7 +63,9 @@
 		660E410D1BBA8689004D2879 /* LeadVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeadVC.h; sourceTree = "<group>"; };
 		660E410E1BBA8689004D2879 /* LeadVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeadVC.m; sourceTree = "<group>"; };
 		660E41101BBAAAAA004D2879 /* LeadVCTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeadVCTest.h; sourceTree = "<group>"; };
-		660E41111BBAAAAA004D2879 /* LeadVCTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeadVCTest.m; sourceTree = "<group>"; };
+		660E41111BBAAAAA004D2879 /* LeadVCTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeadVCTest.m; sourceTree = "<group>"; wrapsLines = 0; };
+		660E41131BBB8029004D2879 /* LeadUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeadUIViewController.h; sourceTree = "<group>"; };
+		660E41141BBB8029004D2879 /* LeadUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeadUIViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,8 +130,6 @@
 				660E40DD1BBA652C004D2879 /* LaunchScreen.storyboard */,
 				660E40E01BBA652C004D2879 /* Info.plist */,
 				660E40CF1BBA652C004D2879 /* Supporting Files */,
-				660E41021BBA6600004D2879 /* LeadViewController.h */,
-				660E41031BBA6600004D2879 /* LeadViewController.m */,
 			);
 			path = AnchorTransform;
 			sourceTree = "<group>";
@@ -169,6 +167,8 @@
 				660E410E1BBA8689004D2879 /* LeadVC.m */,
 				660E41101BBAAAAA004D2879 /* LeadVCTest.h */,
 				660E41111BBAAAAA004D2879 /* LeadVCTest.m */,
+				660E41131BBB8029004D2879 /* LeadUIViewController.h */,
+				660E41141BBB8029004D2879 /* LeadUIViewController.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -305,9 +305,9 @@
 			files = (
 				660E410A1BBA75CA004D2879 /* UIView+Extension.m in Sources */,
 				660E41071BBA7598004D2879 /* NaviPageVC.m in Sources */,
-				660E41041BBA6600004D2879 /* LeadViewController.m in Sources */,
 				660E410F1BBA8689004D2879 /* LeadVC.m in Sources */,
 				660E40D71BBA652C004D2879 /* ViewController.m in Sources */,
+				660E41151BBB8029004D2879 /* LeadUIViewController.m in Sources */,
 				660E40D41BBA652C004D2879 /* AppDelegate.m in Sources */,
 				660E41121BBAAAAA004D2879 /* LeadVCTest.m in Sources */,
 				660E40D11BBA652C004D2879 /* main.m in Sources */,
@@ -536,6 +536,7 @@
 				660E40FB1BBA652C004D2879 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		660E40FC1BBA652C004D2879 /* Build configuration list for PBXNativeTarget "AnchorTransformTests" */ = {
 			isa = XCConfigurationList;
@@ -544,6 +545,7 @@
 				660E40FE1BBA652C004D2879 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		660E40FF1BBA652C004D2879 /* Build configuration list for PBXNativeTarget "AnchorTransformUITests" */ = {
 			isa = XCConfigurationList;
@@ -552,6 +554,7 @@
 				660E41011BBA652C004D2879 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
