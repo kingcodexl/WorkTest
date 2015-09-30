@@ -10,8 +10,8 @@
 #import "UIView+Extension.h"
 #import "NaviPageVC.h"  //方便获取随机颜色
 
-#define screenW self.view.frame.size.width
-#define screenH self.view.frame.size.height
+#define screenW [UIScreen mainScreen].bounds.size.width
+#define screenH [UIScreen mainScreen].bounds.size.height
 #define PageCount 5
 
 // 描点具体是根据width或者高度比例来确定
@@ -20,6 +20,7 @@
 @interface LeadVCTest ()<UIScrollViewDelegate>
 
 @property (nonatomic, strong) NSArray *viewsArray;
+@property (nonatomic, strong) UIView *backView;
 
 @end
 
@@ -34,6 +35,7 @@
 }
 #pragma mark - 懒加载
 -(NSArray *)viewsArray{
+
     if (!_viewsArray) {
         NSMutableArray *M_viewArray = [[NSMutableArray alloc] initWithCapacity:PageCount];
         // 临时用view代替UIImageView
@@ -41,23 +43,43 @@
         float offsetRadius = (screenW / 2.0) / screenH;
         // 第一个view特殊处理
         UIView *view1 = [[UIView alloc]init];
-        view1.frame = CGRectMake(0, 0, screenW, screenH);
+        view1.userInteractionEnabled = NO;
         view1.layer.anchorPoint = CGPointMake(0.5, 1 + offsetRadius);
+        // 特别注意顺序，因为anchorPoint的设置会改变frame
+        // 所以后设置frame
+         view1.frame = CGRectMake(0, 0, screenW , screenH );
+        //view1.layer.position = CGPointMake(207, 368);
+        NSLog(@"frame X:%f Y:%f Width:%f Height:%f",view1.x,view1.y,view1.width,view1.height);
+        NSLog(@"Layer frame X:%f Y:%f Width:%f Height:%f",view1.layer.bounds.origin.x,view1.layer.bounds.origin.y,view1.layer.bounds.size.width,view1.bounds.size.height);
+        NSLog(@"Position X:%f Y:%f",view1.layer.position.x,view1.layer.position.y);
         view1.backgroundColor = [NaviPageVC randomColor];
         [M_viewArray addObject:view1];
         
         // 其他view
         for (int  i = 0; i < 3; i++) {
             UIView *temp = [[UIView alloc]init];
-            temp.frame = CGRectMake(screenW, screenH, screenH, screenW);
+            
             temp.backgroundColor = [NaviPageVC randomColor];
             temp.layer.anchorPoint = CGPointMake(- offsetRadius, 0.5);
+            temp.frame = CGRectMake(screenW, screenH, screenH, screenW);
+            temp.userInteractionEnabled = NO;
             [M_viewArray addObject:temp];
         }
         
         _viewsArray = [M_viewArray copy];
     }
     return _viewsArray;
+}
+
+// 背景
+- (UIView *)backView{
+    if (!_backView) {
+        _backView = [[UIView alloc]init];
+        _backView.frame = self.view.bounds;
+        _backView.backgroundColor = [UIColor grayColor];
+    }
+    return _backView;
+    
 }
 #pragma mark - 生命周期
 - (void)viewDidLoad {
@@ -68,8 +90,11 @@
 
 - (void)configUI{
     // 添加子视图
+    // 0-背景
     // 1-添加ScrollView
     // 2-添加旋转的各个View
+    [self.view addSubview:self.backView];
+    
     UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:self.view.bounds];
     scrollView.delegate = self;
     scrollView.pagingEnabled = YES;
@@ -91,6 +116,29 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - UIScrollDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    float offsetX = scrollView.contentOffset.x;
+    int index = offsetX / screenW;
+    float rotateFactor = - offsetX /screenW;
+    float sixPI = M_PI / 9;
+    float realAngle = sixPI * rotateFactor;
+    if (0 == index) {
+        UIView *currentV = [self.viewsArray firstObject];
+        currentV.layer.transform = CATransform3DMakeRotation(realAngle, 0, 0, 1);
+    }else{
+        if (index <= self.viewsArray.count) {
+#warning TODO
+            UIView *currentV = [self.viewsArray firstObject];
+            //currentV.removeFromSuperview;
+            UIView *temp = [self.viewsArray objectAtIndex:index];
+            temp.layer.transform = CATransform3DMakeRotation(realAngle, 0, 0, 1);
+        }
+        
+    }
+    
+    
+}
 /*
 #pragma mark - Navigation
 
