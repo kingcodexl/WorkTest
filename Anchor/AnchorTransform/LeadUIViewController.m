@@ -36,6 +36,8 @@
 // 指示器
 @property (nonatomic, strong) UIPageControl *pageControl;
 
+// 临时测试
+@property (nonatomic, strong) UIButton *btn;
 @end
 
 @implementation LeadUIViewController
@@ -70,16 +72,6 @@
             float rotateAngle = i * ((2 * M_PI) / PageCount);
             tempView.layer.transform = CATransform3DMakeRotation(rotateAngle, 0, 0, 1);
         }
-        
-        // 在最后一张上添加按钮
-        UIView *btnView = [tempViewArray lastObject];
-        UIButton *nextBtn = [[UIButton alloc] initWithFrame:CGRectMake(screenW / 2  - btnW / 2, screenH - 121, btnW, btnH)];
-        [nextBtn addTarget:self action:@selector(goMainVC) forControlEvents:UIControlEventTouchUpInside];
-        nextBtn.backgroundColor = [UIColor redColor];
-        
-        [btnView addSubview:nextBtn];
-       
-        
         _rotateViews = [tempViewArray copy];
     }
     return _rotateViews;
@@ -143,6 +135,23 @@
     }
     return _pageControl;
 }
+// btn
+- (UIButton *)btn{
+    if (!_btn) {
+        _btn = [[UIButton alloc]init];
+        _btn.layer.anchorPoint = CGPointMake(0.5, 3);
+        _btn.frame = CGRectMake(screenW / 2  - btnW / 2, screenH - 121, btnW, btnH);
+        
+        _btn.layer.transform = CATransform3DMakeRotation(M_PI / 3, 0, 0, 1);
+        
+        [_btn addTarget:self action:@selector(goMainVC) forControlEvents:UIControlEventTouchUpInside];
+        _btn.backgroundColor = [UIColor redColor];
+        _btn.hidden = YES;
+
+    }
+    return _btn;
+}
+
 #pragma  mark - 生命周期
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -163,6 +172,7 @@
     // 指示器在最上层
     [self.view insertSubview:self.pageControl aboveSubview:self.contentView];
     
+    [self.view addSubview:self.btn];
     
 }
 - (void)didReceiveMemoryWarning {
@@ -183,6 +193,17 @@
     float rotateAngle = rotateScale * rotatePI;
     self.contentView.layer.transform = CATransform3DMakeRotation(rotateAngle, 0, 0, 1);
     
+    // 按钮点击触发
+    if (pageIndex == PageCount - 1) {
+        self.btn.hidden = NO;
+        [UIView animateWithDuration:0.2 animations:^{
+             self.btn.layer.transform = CATransform3DMakeRotation(0, 0, 0, 1);
+        }];
+       
+        
+    }else{
+        self.btn.hidden =YES;
+    }
 }
 - (void)goMainVC{
     NSLog(@"gomainVC");
