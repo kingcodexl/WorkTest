@@ -7,7 +7,7 @@
 //
 
 #import "LeadUIViewController.h"
-#import "NaviPageVC.h"
+
 #pragma mark - 宏定义
 
 #define screenW [UIScreen mainScreen].bounds.size.width
@@ -42,6 +42,15 @@
 
 @implementation LeadUIViewController
 
+// 随机颜色
++(UIColor *) randomColor
+{
+    CGFloat hue = ( arc4random() % 256 / 256.0 ); //0.0 to 1.0
+    CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5; // 0.5 to 1.0,away from white
+    CGFloat brightness = ( arc4random() % 128 / 256.0 ) + 0.5; //0.5 to 1.0,away from black
+    return [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1];
+}
+
 #pragma mark - 懒加载
 // 旋转视图集合
 - (NSArray *)rotateViews{
@@ -59,7 +68,7 @@
             tempView.userInteractionEnabled = NO;
             
             // 临时测试设置颜色
-            tempView.backgroundColor = [NaviPageVC randomColor];
+            tempView.backgroundColor = [LeadUIViewController randomColor];
             
             // 添加到数组中
             [tempViewArray addObject:tempView];
