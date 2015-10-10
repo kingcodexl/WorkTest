@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "A543FC24CC1208208C2CD4E7A99723A2A77B626D",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "68BB4EA023A18E3CCE8C7A5DBAD6BFD8AC592504" : 0,
+    "A543FC24CC1208208C2CD4E7A99723A2A77B626D" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "54F839A8-64EA-43F9-938E-4FFC0E37BA70",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "68BB4EA023A18E3CCE8C7A5DBAD6BFD8AC592504" : "TeamTalk",
+    "A543FC24CC1208208C2CD4E7A99723A2A77B626D" : "MyGIt\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "TeamTalk",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "ios\/TeamTalk.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:mogujie\/TeamTalk.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "68BB4EA023A18E3CCE8C7A5DBAD6BFD8AC592504"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/kingcodexl\/WorkTest.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A543FC24CC1208208C2CD4E7A99723A2A77B626D"
+    }
+  ]
+}
