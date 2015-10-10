@@ -7,14 +7,17 @@
 //
 
 #import "AppDelegate.h"
+// 控制器
 #import "MTTLoginViewController.h"
 #import "ChattingMainViewController.h"
+// 维护
 #import "DDClientStateMaintenanceManager.h"
 #import "SessionModule.h"
-#import "NSDictionary+Safe.h"
+// 崩溃统计
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
-
+// 工具
+#import "NSDictionary+Safe.h"
 @interface AppDelegate ()
 
 @end
@@ -24,6 +27,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    // Initialize Fabric and all provided kits 初始化fabirc,提供相关工具
     [Fabric with:@[CrashlyticsKit]];
     
     [DDClientStateMaintenanceManager shareInstance];
@@ -35,28 +39,38 @@
     // 推送消息的注册方式
     if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
         // for iOS 8
-        UIUserNotificationSettings* settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
+        UIUserNotificationSettings* settings = [UIUserNotificationSettings settingsForTypes:
+                                                UIUserNotificationTypeAlert |
+                                                UIUserNotificationTypeBadge |
+                                                UIUserNotificationTypeSound
+                                                                                 categories:nil];
         [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
         [application registerForRemoteNotifications];
     } else {
         // for iOS 7 or iOS 6
-        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                                                               UIRemoteNotificationTypeSound |
+                                                                               UIRemoteNotificationTypeAlert)];
     }
     
     if( SYSTEM_VERSION >=8 ) {
         [[UINavigationBar appearance] setTranslucent:YES];
     }
     
+    // 设置导航条样式
     [[UINavigationBar appearance] setBarStyle:UIBarStyleDefault];
-    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor blackColor] forKey:NSForegroundColorAttributeName]];
+    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObject:[UIColor blackColor]
+                                                                                     forKey:NSForegroundColorAttributeName]];
     
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.backgroundColor = [UIColor whiteColor];
-    
+    // 控制器
     MTTLoginViewController *loginVC =[[MTTLoginViewController alloc] initWithNibName:@"MTTLoginViewController" bundle:nil];
     UINavigationController *navRoot =[[UINavigationController alloc] initWithRootViewController:loginVC];
     navRoot.hidesBottomBarWhenPushed =YES;
-    self.window.rootViewController =navRoot;
+    
+    // 设置window
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
+    self.window.rootViewController = navRoot;
     
     [self.window makeKeyAndVisible];
     
@@ -110,16 +124,21 @@
 //#endif
 
 - (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    
     NSString *token = [NSString stringWithFormat:@"%@", deviceToken];
     NSString *dt = [token stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
     NSString *dn = [dt stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    TheRuntime.pushToken= [dn stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    TheRuntime.pushToken= [dn stringByReplacingOccurrencesOfString:@" "
+                                                        withString:@""];
 }
 
 - (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    
     NSString *error_str = [NSString stringWithFormat: @"%@", error];
     NSLog(@"获取令牌失败:  %@",error_str);
 }
+
 // 处理推送消息
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
     UIApplicationState state =application.applicationState;

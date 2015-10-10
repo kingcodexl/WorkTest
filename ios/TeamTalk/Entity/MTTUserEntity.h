@@ -19,7 +19,7 @@
 @property(nonatomic,strong) NSString *nick;         //用户昵称
 @property(nonatomic,strong) NSString *avatar;       //用户头像
 @property(nonatomic,strong) NSString *department;   //用户部门
-@property(nonatomic,strong) NSString *signature;   //个性签名
+@property(nonatomic,strong) NSString *signature;    //个性签名
 @property(strong)NSString *position;
 @property(assign)NSInteger sex;
 @property(strong)NSString *departId;

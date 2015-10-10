@@ -7,17 +7,25 @@
 //
 
 #import "DDClientStateMaintenanceManager.h"
+// 网络管理
 #import "DDTcpClientManager.h"
-#import "DDClientState.h"
 #import "DDReachability.h"
+// 客户端状态
+#import "DDClientState.h"
+// 服务器接口
 #import "HeartbeatAPI.h"
+// 登陆模块
 #import "LoginModule.h"
-#import "RecentUsersViewController.h"
+// 通知
 #import "MTTNotification.h"
+// 控制器
+#import "RecentUsersViewController.h"
 
+// 请求超时时间
 static NSInteger const heartBeatTimeinterval = 30;
 static NSInteger const serverHeartBeatTimeinterval = 60;
 static NSInteger const reloginTimeinterval = 5;
+
 
 @interface DDClientStateMaintenanceManager(PrivateAPI)
 
@@ -49,6 +57,7 @@ static NSInteger const reloginTimeinterval = 5;
     BOOL _receiveServerHeart;
     NSUInteger _reloginInterval;
 }
+// 单例
 + (instancetype)shareInstance
 {
     static DDClientStateMaintenanceManager* g_clientStateManintenanceManager;
@@ -64,12 +73,18 @@ static NSInteger const reloginTimeinterval = 5;
     self = [super init];
     if (self)
     {
+        // 注册kvo接受通知
         [self p_registerClientStateObserver];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(n_receiveServerHeartBeat) name:DDNotificationServerHeartBeat object:nil];
+        // 添加通知接受对象
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(n_receiveServerHeartBeat)
+                                                     name:DDNotificationServerHeartBeat
+                                                   object:nil];
     }
     return self;
 }
 
+// 移除观察者
 - (void)dealloc
 {
     DDLog(@"DDClientStateMaintenanceManager release");
@@ -141,7 +156,7 @@ static NSInteger const reloginTimeinterval = 5;
 
 #pragma mark private API
 
-//注册KVO
+// 注册KVO
 - (void)p_registerClientStateObserver
 {
     //网络状态

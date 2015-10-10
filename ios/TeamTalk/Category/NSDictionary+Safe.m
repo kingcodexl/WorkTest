@@ -13,7 +13,6 @@
 
 @implementation NSDictionary (Safe)
 
-
 - (id)safeObjectForKey:(id)key{
     if (!isValidKey(key)) {
         return nil;
@@ -33,13 +32,12 @@
 }
 - (NSString*)stringValueForKey:(id)key{
     id obj = [self safeObjectForKey:key];
+    // 判断是否能响应字符串
     if ([obj respondsToSelector:@selector(stringValue)]) {
         return [obj stringValue];
     }
-    
     return nil;
 }
-
 
 @end
 
